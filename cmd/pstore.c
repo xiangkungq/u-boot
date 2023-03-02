@@ -98,7 +98,8 @@ static u32 pstore_get_buffer(u32 sig, phys_addr_t buffer, u32 size, char *dest)
 			return 0;
 		}
 
-		if (prb->size > size) {
+		if (prb->size > size ||
+		    prb->start > prb->size) {
 			log_debug("found existing invalid buffer, size %u, start %u\n",
 			          prb->size, prb->start);
 			return 0;
